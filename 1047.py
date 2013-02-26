@@ -1,4 +1,5 @@
 #!/usr/bin/python
+print "hello from git"
 import sys,numpy
 sys.stdin = open("1047.txt", "r")
 N = int(sys.stdin.readline().rstrip())
