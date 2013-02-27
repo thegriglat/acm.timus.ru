@@ -41,7 +41,11 @@ for i in xrange(len(p)):
         pl.append(p[i])
 pl.reverse()
 dist = 0
-if x > max(p) or x < min(p):
-   print  "Impossible"
+if pr == []:
+    pr = [1000]
+if pl == []:
+    pl = [-1000]
+if x > max(pr) or x < min(pl):
+    print  "Impossible"
 else:
     print getDist(1,pr,pl), getDist(-1,pr,pl)
