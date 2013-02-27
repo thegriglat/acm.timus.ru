@@ -3,7 +3,7 @@
 import math
 N = input()
 i = [0,0,0,0]
-a = int(math.sqrt(N))
+a = int(math.sqrt(N) + 1)
 m = 5
 for i[0] in xrange(a):
     for i[1] in xrange(a):
