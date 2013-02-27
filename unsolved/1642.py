@@ -49,4 +49,4 @@ if pl == []:
 if x > max(pr) or x < min(pl):
     print  "Impossible"
 else:
-    print getDist(1,pr,pl), getDist(-1,pr,pl)
+    print "%d %d"% (getDist(1,pr,pl), getDist(-1,pr,pl))
