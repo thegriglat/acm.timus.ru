@@ -10,6 +10,7 @@ def getDist(path,pr,pl):
     else:
         pp = -1
     while coord != x:
+        print pl,pp
         if pp == 1:
             try:
                 bord = pr.pop(0)
@@ -25,6 +26,7 @@ def getDist(path,pr,pl):
             i += 1
             if coord == x:
                 break
+            print "i=",i,"\tc=",coord,"\tpp=",pp,"\tbord=",bord
         pp *= -1
     return i
 
@@ -49,4 +51,6 @@ if pl == []:
 if x > max(pr) or x < min(pl):
     print  "Impossible"
 else:
-    print "%d %d"% (getDist(1,pr,pl), getDist(-1,pr,pl))
+    pr1 = [] + pr
+    pl1 = [] + pl
+    print "%d %d"% (getDist(1,pr,pl), getDist(-1,pr1,pl1))
