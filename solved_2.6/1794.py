@@ -1,5 +1,7 @@
 #!/usr/bin/python
 from sys import stdin
+dict
+
 N = int(stdin.readline().rstrip())
 a = [int(x) for x in stdin.readline().rstrip().split(" ")]
 mini = 1e10
@@ -10,3 +12,4 @@ for i in xrange(len(a)):
         j += len(a)
     b[j] += 1
 print b.index(max(b)) + 1
+
