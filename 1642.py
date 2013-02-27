@@ -11,15 +11,15 @@ def getDist(path,pr,pl):
         pp = -1
     while coord != x:
         if pp == 1:
-            try:
+#            try:
                 bord = pr.pop(0)
-            except:
-                bord = None
+#            except:
+#                bord = None
         else:
-            try:
+#            try:
                 bord = pl.pop(0)
-            except:
-                bord = None
+#            except:
+#                bord = None
         while coord != bord :
             coord +=  pp
             i += 1
