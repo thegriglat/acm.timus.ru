@@ -1,6 +1,32 @@
 #!/usr/bin/python
 
 import sys,numpy
+
+def MatDet(A):
+    if len(A) == 2:
+        return A[0][0] * A[1][1] - A[0][1] * A[1][0]
+    D = 0
+    for i in xrange(len(A)):
+        B = []
+        for j in A[1:]:
+            B.append(j[0:i] + j[i+1:])            
+        D += A[0][i] * MatDet(B) * (-1) ** i
+    return D
+
+def MatMul(A,B):
+    C = [[0 for j in xrange(len(B[0]))] for i in xrange(len(A))]
+    for i in xrange(len(A)):
+        for j in xrange(len(B[0])):
+            C[i][j] = sum([ A[i][n] * B[n][j] for n in xrange(len(A[0]))])
+    return C
+
+
+
+A = [[1,2],
+[3,4]]
+B = [[1,0],
+[0,1]]
+print MatMul(B,A)
 #sys.stdin = open("1047.txt", "r")
 N = int(sys.stdin.readline().rstrip())
 a0 = float(sys.stdin.readline().rstrip())
