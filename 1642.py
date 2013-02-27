@@ -11,9 +11,15 @@ def getDist(path,pr,pl):
         pp = -1
     while coord != x:
         if pp == 1:
-            bord = pr.pop(0)
+            try:
+                bord = pr.pop(0)
+            except:
+                bord = None
         else:
-            bord = pl.pop(0)
+            try:
+                bord = pl.pop(0)
+            except:
+                bord = None
         while coord != bord :
             coord +=  pp
             i += 1
@@ -22,7 +28,7 @@ def getDist(path,pr,pl):
         pp *= -1
     return i
 
-sys.stdin = open("1642.txt","r")
+#sys.stdin = open("1642.txt","r")
 (n,x) = (int(x) for x in sys.stdin.readline().rstrip().split(" "))
 p = [int(j) for j in sys.stdin.readline().split()]
 p.sort()
@@ -35,7 +41,7 @@ for i in xrange(len(p)):
         pl.append(p[i])
 pl.reverse()
 dist = 0
-if x >= max(p) or x <= min(p):
-    print  "Impossible"
+if x > max(pr + [x + 1]) or x < min(pl + [x - 1]):
+   print  "Impossible"
 else:
     print getDist(1,pr,pl), getDist(-1,pr,pl)
