@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sys,numpy
-sys.stdin = open("1047.txt", "r")
+#sys.stdin = open("1047.txt", "r")
 N = int(sys.stdin.readline().rstrip())
 a0 = float(sys.stdin.readline().rstrip())
 an1 = float(sys.stdin.readline().rstrip())
