@@ -52,9 +52,6 @@ a0 = float(sys.stdin.readline().rstrip())
 an1 = float(sys.stdin.readline().rstrip())
 c = [float(sys.stdin.readline().rstrip()) * (-1)  for x in xrange(0,N)]
 c = [a0] + c + [an1]
-##a = [0 for x in xrange(N+2)]
-##a[N + 1] = an1
-##a[0] = a0
 A = [[ 0 for j in xrange(N + 2)] for i in xrange(N + 2)]
 B = [[c[i]] for i in xrange(len(c))]
 A[0][0] = 1
@@ -64,6 +61,13 @@ for i in xrange(1,N + 1):
     A[i][i] = 1.0
     A[i][i + 1] = -0.5
 A = MatToTriang(A)
-X = MatMul(MatInv(A,True) , B)
-print  "%.2f" % X[1][0]
+
+#Gauss solve
+a = [a0] + [0 for j in xrange(N + 1)] + [an1]
+for i in xrange(N+1,0,-1):
+    #calc a[i]
+    a[i] = B[i][0] - sum([ A[i][j] * a[j] for j in xrange(i+1,N+2) ])
+
+#X = MatMul(MatInv(A,True) , B)
+print  "%.2f" % a[1]
 
