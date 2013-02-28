@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import sys,copy
+import sys
 
 def Minor(A,i,j):
     B = []
@@ -36,7 +36,7 @@ def MatInv(A):
     return Transpose(M)
     
 
-sys.stdin = open("1047.txt", "r")
+#sys.stdin = open("1047.txt", "r")
 N = int(sys.stdin.readline().rstrip())
 a0 = float(sys.stdin.readline().rstrip())
 an1 = float(sys.stdin.readline().rstrip())
@@ -46,10 +46,7 @@ a = [0 for x in xrange(N+2)]
 a[N + 1] = an1
 a[0] = a0
 A = [[ 0 for j in xrange(N + 2)] for i in xrange(N + 2)]
-#A = numpy.matrix([[ 0 for j in xrange(N + 2)] for i in xrange(N + 2)])
 B = [[c[i]] for i in xrange(len(c))]
-#(numpy.matrix(c)).transpose()
-#ma = A.tolist()
 A[0][0] = 1
 A[N + 1][N + 1] = 1
 for i in xrange(1,N + 1):
