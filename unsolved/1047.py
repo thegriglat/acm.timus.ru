@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import sys,copy
+import sys
 def MatToTriang(G):
     A = list(G)
     global B
@@ -52,9 +52,9 @@ a0 = float(sys.stdin.readline().rstrip())
 an1 = float(sys.stdin.readline().rstrip())
 c = [float(sys.stdin.readline().rstrip()) * (-1)  for x in xrange(0,N)]
 c = [a0] + c + [an1]
-a = [0 for x in xrange(N+2)]
-a[N + 1] = an1
-a[0] = a0
+##a = [0 for x in xrange(N+2)]
+##a[N + 1] = an1
+##a[0] = a0
 A = [[ 0 for j in xrange(N + 2)] for i in xrange(N + 2)]
 B = [[c[i]] for i in xrange(len(c))]
 A[0][0] = 1
