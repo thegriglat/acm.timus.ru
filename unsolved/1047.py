@@ -30,11 +30,7 @@ def MatDet(A,triangle=False):
     return D
 
 def MatMul(A,B):
-    C = [[0 for j in xrange(len(B[0]))] for i in xrange(len(A))]
-    for i in xrange(len(A)):
-        for j in xrange(len(B[0])):
-            C[i][j] = sum([ A[i][n] * B[n][j] for n in xrange(len(A[0]))])
-    return C
+    return [[sum([A[i][n]*B[n][j] for n in xrange(len(A[0]))]) for j in xrange(len(B[0]))] for i in xrange(len(A))]
 
 def Transpose(A):
     return map(list,zip(*A))
@@ -82,10 +78,9 @@ for i in xrange(1,N + 1):
     A[i][i - 1] = -1
     A[i][i] = 2
     A[i][i + 1] = -1
-print numpy.matrix(A)
-MatToTriang(A)
-print numpy.matrix(A)
-print numpy.matrix(B)
-X = MatMul(MatInv(A,True) , B)
+print MatDet(A)
+#MatToTriang(A)
+print MatDet(A,True)
+X = MatMul(MatInv(A) , B)
 print  "%.2f" % X[1][0]
 
