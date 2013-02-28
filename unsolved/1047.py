@@ -1,16 +1,21 @@
 #!/usr/bin/python
 
-import sys,numpy
+import sys,copy
+
+def Minor(A,i,j):
+    B = []
+    for z in A[0:i] + A[i+1:]:
+        B.append(z[0:j] + z[j + 1:])
+    return B
 
 def MatDet(A):
+    if len(A) == 1:
+        return A[0][0]
     if len(A) == 2:
         return A[0][0] * A[1][1] - A[0][1] * A[1][0]
     D = 0
     for i in xrange(len(A)):
-        B = []
-        for j in A[1:]:
-            B.append(j[0:i] + j[i+1:])            
-        D += A[0][i] * MatDet(B) * (-1) ** i
+        D += A[0][i] * MatDet(Minor(A,0,i)) * (-1) ** i
     return D
 
 def MatMul(A,B):
@@ -20,14 +25,18 @@ def MatMul(A,B):
             C[i][j] = sum([ A[i][n] * B[n][j] for n in xrange(len(A[0]))])
     return C
 
+def Transpose(A):
+    return map(list,zip(*A))
 
+def MatInv(A):
+    D = MatDet(A)
+    if D == 0:
+        return None
+    M = [[((-1)**(i + j)) * MatDet(Minor(A,i,j))/(0.0 + D) for j in xrange(len(A))] for i in xrange(len(A))]
+    return Transpose(M)
+    
 
-A = [[1,2],
-[3,4]]
-B = [[1,0],
-[0,1]]
-print MatMul(B,A)
-#sys.stdin = open("1047.txt", "r")
+sys.stdin = open("1047.txt", "r")
 N = int(sys.stdin.readline().rstrip())
 a0 = float(sys.stdin.readline().rstrip())
 an1 = float(sys.stdin.readline().rstrip())
@@ -36,16 +45,17 @@ c = [a0] + c + [an1]
 a = [0 for x in xrange(N+2)]
 a[N + 1] = an1
 a[0] = a0
-A = numpy.matrix([[ 0 for j in xrange(N + 2)] for i in xrange(N + 2)])
-B = (numpy.matrix(c)).transpose()
-ma = A.tolist()
-ma[0][0] = 1
-ma[N + 1][N + 1] = 1
+A = [[ 0 for j in xrange(N + 2)] for i in xrange(N + 2)]
+#A = numpy.matrix([[ 0 for j in xrange(N + 2)] for i in xrange(N + 2)])
+B = [[c[i]] for i in xrange(len(c))]
+#(numpy.matrix(c)).transpose()
+#ma = A.tolist()
+A[0][0] = 1
+A[N + 1][N + 1] = 1
 for i in xrange(1,N + 1):
-    ma[i][i - 1] = -0.5
-    ma[i][i] = 1
-    ma[i][i + 1] = -0.5 
-A = numpy.matrix(ma)
-X = A.getI() * B
-print  "%.2f" % X.tolist()[1][0]
+    A[i][i - 1] = -0.5
+    A[i][i] = 1
+    A[i][i + 1] = -0.5 
+X = MatMul(MatInv(A) , B)
+print  "%.2f" % X[1][0]
 
