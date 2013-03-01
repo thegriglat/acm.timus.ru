@@ -2,12 +2,12 @@
 
 import sys
 
-def MatToTriang(changeB=True):
+def MatToTriang():
     global A
     global B
     for i in xrange(len(A) - 2,-1,-1):
         k = A[i][i + 1] / (A[i + 1][i+1] + 0.0)
-        if changeB:B[i][0] -= k * B[i+1][0]
+        B[i][0] -= k * B[i+1][0]
         for j in xrange(len(A)):
             A[i][j] -= k * A[i+1][j]    
     return A
@@ -22,6 +22,7 @@ A = [[ 0 for j in xrange(N)] for i in xrange(N)]
 c[0] += a0
 c[N - 1] += an1
 B = [[c[i]] for i in xrange(len(c))]
+del c
 ##print numpy.matrix(B)
 ##
 ##B.insert(0,[a0])
@@ -40,13 +41,15 @@ for i in xrange(0,N):
     except:
         pass
 ##print 1, numpy.matrix(A)
-A = MatToTriang(True)
+A = MatToTriang()
 ##print 2, numpy.matrix(A)
 ##print 3, numpy.matrix(B)
 ##X = MatMul(MatInv(A,True) , B)
 ##print 4, numpy.matrix(X)
 ##print  "%.2f" % X[0][0]
+
 print "%.2f" % (B[0][0] / (0.0 + A[0][0]))
+##print "%.2f" % (c[0] / (0.0 + A[0][0]))
 ###a1 + an = -(2*sc - a0 - an1)
 ##a1 = - 0.5*(2*sum(c) - a0 - an1)
 ##print "%.2f" % a1
