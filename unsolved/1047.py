@@ -8,15 +8,15 @@ def MatToTriang():
     for i in xrange(len(A) - 2,-1,-1):
         k = A[i][i + 1] / (A[i + 1][i+1] + 0.0)
         B[i][0] -= k * B[i+1][0]
-        for j in xrange(len(A)):
-            A[i][j] -= k * A[i+1][j]    
-    return A
+        for j in xrange(i - 1, i+2):    ##len(A)):
+            A[i][j] -= k * A[i+1][j] 
+    #return A
     
 sys.stdin = open("1047.txt", "r")
 N = int(sys.stdin.readline().rstrip())
 a0 = float(sys.stdin.readline().rstrip())
 an1 = float(sys.stdin.readline().rstrip())
-a = [a0] + [0]*N + [an1]
+#a = [a0] + [0]*N + [an1]
 c = [float(sys.stdin.readline().rstrip()) * (-2)   for x in xrange(0,N)]
 A = [[ 0 for j in xrange(N)] for i in xrange(N)]
 c[0] += a0
@@ -41,7 +41,7 @@ for i in xrange(0,N):
     except:
         pass
 ##print 1, numpy.matrix(A)
-A = MatToTriang()
+MatToTriang()
 ##print 2, numpy.matrix(A)
 ##print 3, numpy.matrix(B)
 ##X = MatMul(MatInv(A,True) , B)
