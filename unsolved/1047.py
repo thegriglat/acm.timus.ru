@@ -2,8 +2,8 @@
 
 import sys
 
-def MatToTriang(G,changeB=True):
-    A = list(G)
+def MatToTriang(changeB=True):
+    global A
     global B
     for i in xrange(len(A) - 2,-1,-1):
         k = A[i][i + 1] / (A[i + 1][i+1] + 0.0)
@@ -81,7 +81,7 @@ for i in xrange(0,N):
     except:
         pass
 ##print 1, numpy.matrix(A)
-A = MatToTriang(A,True)
+A = MatToTriang(True)
 ##print 2, numpy.matrix(A)
 ##print 3, numpy.matrix(B)
 ##X = MatMul(MatInv(A,True) , B)
