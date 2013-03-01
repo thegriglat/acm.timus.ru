@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import sys
 
-#a = sys.stdin.readline().rstrip()
+a = sys.stdin.readline().rstrip()
 a = "ThesampletextthatcouldbereadedthesameinbothordersArozaupalanalapuazorA"
 a = " " + a + " "
 d = []
