@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import sys
 
-def getDist(path,pr,pl):
+def getDistSimple(path,ppr,ppl):
     global x
     coord = 0
     i = 0
@@ -11,15 +11,9 @@ def getDist(path,pr,pl):
         pp = -1
     while coord != x:
         if pp == 1:
-            try:
-                bord = pr.pop(0)
-            except:
-                bord = None
+            bord = ppr
         else:
-            try:
-                bord = pl.pop(0)
-            except:
-                bord = None
+            bord = ppl
         while coord != bord :
             coord +=  pp
             i += 1
@@ -31,23 +25,15 @@ def getDist(path,pr,pl):
 #sys.stdin = open("1642.txt","r")
 (n,x) = (int(x) for x in sys.stdin.readline().rstrip().split(" "))
 p = [int(j) for j in sys.stdin.readline().split()]
-p.sort()
-pr = []
-pl = []
+ppr = 1000
+ppl = -1000
 for i in xrange(len(p)):
-    if p[i] >= 0:
-        pr.append(p[i])
-    else:
-        pl.append(p[i])
-pl.reverse()
+    if p[i] < ppr and p[i] > 0:
+        ppr = p[i]
+    if p[i] > ppl and p[i] < 0:
+        ppl = p[i]
 dist = 0
-if pr == []:
-    pr = [x]
-if pl == []:
-    pl = [x]
-if x > max(pr) or x < min(pl):
+if x > ppr or x < ppl:
     print  "Impossible"
 else:
-    pr1 = [] + pr
-    pl1 = [] + pl
-    print getDist(1,pr,pl), getDist(-1,pr1,pl1)
+    print getDistSimple(1,ppr,ppl), getDistSimple(-1,ppr,ppl)
