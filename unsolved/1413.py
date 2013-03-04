@@ -60,11 +60,12 @@ My = [[ Go(i,"y") + Go(j,"y") for j in xrange(0,10)] for i in xrange(0,10)]
 Mx[0] = [0] * len(Mx[0])
 My[0] = [0] * len(My[0])
 #sys.stdin = open("1413.txt")
-s = raw_input().rstrip()
+s = sys.stdin.readline().rstrip()
 x = 0
 y = 0
 i = 0
 N = len(s)
+
 while i < N:
     num = s[i:i+2]
     if len(num) == 1:
@@ -78,4 +79,5 @@ while i < N:
     i += 2
     if istep == 0 or jstep == 0 :
         break
+
 print "%.10f %.10f" % (x,y)
