@@ -76,6 +76,6 @@ while i < N:
     x += Mx[istep][jstep]
     y += My[istep][jstep]
     i += 2
-    if istep == 0 or jstep == 0:
+    if istep == 0 or jstep == 0 :
         break
 print "%.10f %.10f" % (x,y)
