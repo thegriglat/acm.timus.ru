@@ -6,8 +6,11 @@ def getL(n):
     if int(math.sqrt(N)) ** 2 == N:
         return 1
     i = 0
+    a = 5
     while int(math.sqrt(N)) - i > 0:
-        b = math.sqrt(N - int(math.sqrt(N)) ** 2)
+        a = int(math.sqrt(N)) - i
+        b = math.sqrt(N - a ** 2)
+        #print a ** 2, b**2
         if int(b) == b:
             return 2
         i += 1
